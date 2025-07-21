@@ -221,7 +221,7 @@ if st.session_state.view_mode == "Single Ticket View":
     
     # Right column: Accounts Linked to D&B GU Profile
     with col2:
-        st.markdown("### Accounts Linked to D&B GU Profile")
+        st.markdown("### Accounts Linked to Previous GU DUNS")
         transposed1 = future_row.transpose().reset_index()
         transposed1.columns = ['Field'] + [str(i + 1) for i in range(transposed1.shape[1] - 1)]
         st.dataframe(transposed1, height=500, width=None, hide_index=True, use_container_width=True)
