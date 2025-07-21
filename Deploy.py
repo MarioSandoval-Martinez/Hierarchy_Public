@@ -4,12 +4,12 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import hashlib
 import socket
-socket.setdefaultfamily(socket.AF_INET)
 
 
 st.set_page_config(layout="wide")
 
 def get_connection():
+    host_ipv4 = socket.gethostbyname(st.secrets["DB_HOST"])
     return psycopg2.connect(
         host=st.secrets["DB_HOST"],
         port=st.secrets["DB_PORT"],
