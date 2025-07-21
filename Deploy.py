@@ -3,6 +3,9 @@ import pandas as pd
 import psycopg2
 from psycopg2.extras import RealDictCursor
 import hashlib
+import socket
+socket.setdefaultfamily(socket.AF_INET)
+
 
 st.set_page_config(layout="wide")
 
