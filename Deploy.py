@@ -15,16 +15,6 @@ def get_connection():
         password=st.secrets["DB_PASSWORD"]
     )
 
-# -------------------------------
-# Load data once authenticated
-# -------------------------------
-conn = get_connection()
-ticket_df = pd.read_sql("SELECT * FROM ticket_table", conn)
-current_df = pd.read_sql("SELECT * FROM current_accounts", conn)
-future_df = pd.read_sql("SELECT * FROM future_accounts", conn)
-conn.close()
-
-
 # Columns to show in detailed view
 display_columns = [
     "Enterprise ID", "Account Name", "Record Type ID", "Ultimate Parent Name",
@@ -77,6 +67,14 @@ if not st.session_state.authenticated:
         else:
             st.error("Invalid username or password")
     st.stop()
+# -------------------------------
+# Load data once authenticated
+# -------------------------------
+conn = get_connection()
+ticket_df = pd.read_sql("SELECT * FROM ticket_table", conn)
+current_df = pd.read_sql("SELECT * FROM current_accounts", conn)
+future_df = pd.read_sql("SELECT * FROM future_accounts", conn)
+conn.close()
 
 # Initialize session state
 if "view_mode" not in st.session_state:
